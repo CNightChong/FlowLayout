@@ -37,7 +37,9 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
     protected List<Integer> mLineHeight = new ArrayList<>();
     protected List<Integer> mLineWidth = new ArrayList<>();
     private int mGravity;
-    // 存储每一行所有的childView
+    /**
+     * 存储每一行所有的childView
+     */
     private List<View> lineViews = new ArrayList<>();
 
     private TagAdapter mTagAdapter;
@@ -74,29 +76,33 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
 
         for (int i = 0; i < childCount; i++) {
             TagView tagView = (TagView) getChildAt(i);
-            if (tagView.getVisibility() == View.GONE) continue;
+            if (tagView.getVisibility() == View.GONE) {
+                continue;
+            }
             if (tagView.getTagView().getVisibility() == View.GONE) {
                 tagView.setVisibility(View.GONE);
             }
         }
 
-        // 获得它的父容器为它设置的测量模式和大小
+        // 当测量模式是EXACTLY(match_parent,100dp)时，得到宽高
+        // 获得FlowLayout的父容器为它设置的测量模式和大小
         int sizeWidth = MeasureSpec.getSize(widthMeasureSpec);
         int modeWidth = MeasureSpec.getMode(widthMeasureSpec);
         int sizeHeight = MeasureSpec.getSize(heightMeasureSpec);
         int modeHeight = MeasureSpec.getMode(heightMeasureSpec);
 
-        // 如果是warp_content情况下，记录宽和高
+        // 当测量模式是T_MOST(warp_content)时，记录宽和高
+        // width应该取最长一行的宽度
         int width = 0;
+        // 所有行数累积的高度
         int height = 0;
 
-        // 记录每一行的宽度，width不断取最大宽度
+        // 记录每一行的宽度
         int lineWidth = 0;
-
-        // 每一行的高度，累加至height
+        // 每一行的高度
         int lineHeight = 0;
 
-        // 遍历每个子元素
+        // 遍历每个子view
         for (int i = 0; i < childCount; i++) {
             View child = getChildAt(i);
             if (child.getVisibility() == View.GONE) {
@@ -106,29 +112,31 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
                 }
                 continue;
             }
-            // 测量每一个child的宽和高
+            // 测量每一个子view的宽和高
             measureChild(child, widthMeasureSpec, heightMeasureSpec);
-            // 得到child的lp
+            // 得到子view的lp
             MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
 
-            // 当前子控件实际占据的宽度
+            // 当前子view实际占据的宽度
             int childWidth = child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
             // 当前子控件实际占据的高度
             int childHeight = child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin;
 
 
-            // 如果加入当前child，则超出最大宽度，则得到目前最大宽度给width，累加height 然后开启新行
+            // 如果加入当前的子view，超出最大宽度，则将目前得到的最大宽度给width，累加height 然后换行
             if (lineWidth + childWidth > sizeWidth - getPaddingLeft() - getPaddingRight()) {
-                // 取最大的
+                // 对比得到最大宽度
                 width = Math.max(width, lineWidth);
-                // 重新开启新行，开始记录
+                // 重置lineWidth，换行
                 lineWidth = childWidth;
                 // 叠加当前高度
                 height += lineHeight;
                 // 开启记录下一行的高度
                 lineHeight = childHeight;
-            } else { // 否则累加值lineWidth,lineHeight取最大高度
+            } else { // 不换行
+                // 叠加行宽 lineWidth
                 lineWidth += childWidth;
+                // 得到当前行最大的高度 lineHeight
                 lineHeight = Math.max(lineHeight, childHeight);
             }
             // 如果是最后一个，则将当前记录的最大宽度和当前lineWidth做比较
@@ -138,9 +146,8 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
             }
         }
         setMeasuredDimension(
-                //
                 modeWidth == MeasureSpec.EXACTLY ? sizeWidth : width + getPaddingLeft() + getPaddingRight(),
-                modeHeight == MeasureSpec.EXACTLY ? sizeHeight : height + getPaddingTop() + getPaddingBottom()//
+                modeHeight == MeasureSpec.EXACTLY ? sizeHeight : height + getPaddingTop() + getPaddingBottom()
         );
 
     }
@@ -153,6 +160,7 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
         mLineWidth.clear();
         lineViews.clear();
 
+        //当前ViewGroup的宽度
         int width = getWidth();
 
         int lineWidth = 0;
@@ -163,40 +171,44 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
         // 遍历所有的子view
         for (int i = 0; i < childCount; i++) {
             View child = getChildAt(i);
-            if (child.getVisibility() == View.GONE) continue;
+            if (child.getVisibility() == View.GONE) {
+                continue;
+            }
             MarginLayoutParams lp = (MarginLayoutParams) child
                     .getLayoutParams();
 
+            // 子view宽高
             int childWidth = child.getMeasuredWidth();
             int childHeight = child.getMeasuredHeight();
 
-            // 如果已经需要换行
+            // 如果需要换行
             if (childWidth + lineWidth + lp.leftMargin + lp.rightMargin > width - getPaddingLeft() - getPaddingRight()) {
                 // 记录这一行所有的View以及最大高度
                 mLineHeight.add(lineHeight);
-                // 将当前行的childView保存，然后开启新的ArrayList保存下一行的childView
+                // 将当前行的View保存，然后开启新的ArrayList保存下一行的childView
                 mAllViews.add(lineViews);
                 mLineWidth.add(lineWidth);
 
-                // 重置行宽
+                // 重置行宽和行高
                 lineWidth = 0;
                 lineHeight = childHeight + lp.topMargin + lp.bottomMargin;
+                // 重置行view集合
                 lineViews = new ArrayList<>();
             }
 
             // 如果不需要换行，则累加
             lineWidth += childWidth + lp.leftMargin + lp.rightMargin;
-            lineHeight = Math.max(lineHeight, childHeight + lp.topMargin
-                    + lp.bottomMargin);
+            lineHeight = Math.max(lineHeight, childHeight + lp.topMargin + lp.bottomMargin);
             lineViews.add(child);
 
         }
+
         // 记录最后一行
         mLineHeight.add(lineHeight);
         mLineWidth.add(lineWidth);
         mAllViews.add(lineViews);
 
-
+        // 设置子view开始的位置
         int left = getPaddingLeft();
         int top = getPaddingTop();
 
@@ -232,7 +244,7 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
 
                 MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
 
-                //计算childView的left,top,right,bottom
+                //计算子View的left,top,right,bottom
                 int lc = left + lp.leftMargin;
                 int tc = top + lp.topMargin;
                 int rc = lc + child.getMeasuredWidth();
@@ -247,6 +259,12 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
 
     }
 
+    /**
+     * 当前ViewGroup对应的LayoutParams
+     *
+     * @param attrs 属性集
+     * @return LayoutParams
+     */
     @Override
     public LayoutParams generateLayoutParams(AttributeSet attrs) {
         return new MarginLayoutParams(getContext(), attrs);
