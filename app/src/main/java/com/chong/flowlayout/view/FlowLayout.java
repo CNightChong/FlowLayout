@@ -90,13 +90,10 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
         int width = 0;
         int height = 0;
 
-        /**
-         * 记录每一行的宽度，width不断取最大宽度
-         */
+        // 记录每一行的宽度，width不断取最大宽度
         int lineWidth = 0;
-        /**
-         * 每一行的高度，累加至height
-         */
+
+        // 每一行的高度，累加至height
         int lineHeight = 0;
 
         // 遍历每个子元素
@@ -119,12 +116,13 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
             // 当前子控件实际占据的高度
             int childHeight = child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin;
 
-            /**
-             * 如果加入当前child，则超出最大宽度，则得到目前最大宽度给width，类加height 然后开启新行
-             */
+
+            // 如果加入当前child，则超出最大宽度，则得到目前最大宽度给width，累加height 然后开启新行
             if (lineWidth + childWidth > sizeWidth - getPaddingLeft() - getPaddingRight()) {
-                width = Math.max(width, lineWidth); // 取最大的
-                lineWidth = childWidth; // 重新开启新行，开始记录
+                // 取最大的
+                width = Math.max(width, lineWidth);
+                // 重新开启新行，开始记录
+                lineWidth = childWidth;
                 // 叠加当前高度
                 height += lineHeight;
                 // 开启记录下一行的高度
@@ -185,9 +183,8 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
                 lineHeight = childHeight + lp.topMargin + lp.bottomMargin;
                 lineViews = new ArrayList<>();
             }
-            /**
-             * 如果不需要换行，则累加
-             */
+
+            // 如果不需要换行，则累加
             lineWidth += childWidth + lp.leftMargin + lp.rightMargin;
             lineHeight = Math.max(lineHeight, childHeight + lp.topMargin
                     + lp.bottomMargin);
