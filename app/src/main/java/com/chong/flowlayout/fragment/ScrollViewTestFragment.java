@@ -9,31 +9,27 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.chong.flowlayout.R;
-import com.chong.flowlayout.view.FlowLayout;
 import com.chong.flowlayout.adapter.TagAdapter;
+import com.chong.flowlayout.view.FlowLayout;
 
 import java.util.Set;
 
-/**
- * Created by zhy on 15/9/10.
- */
 public class ScrollViewTestFragment extends Fragment {
-    private String[] mVals = new String[]
-            {"Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
-                    "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
-                    "Android", "Weclome Hello", "Button Text", "TextView", "Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
-                    "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
-                    "Android", "Weclome Hello", "Button Text", "TextView", "Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
-                    "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
-                    "Android", "Weclome Hello", "Button Text", "TextView", "Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
-                    "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
-                    "Android", "Weclome Hello", "Button Text", "TextView", "Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
-                    "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
-                    "Android", "Weclome Hello", "Button Text", "TextView", "Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
-                    "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
-                    "Android", "Weclome Hello", "Button Text", "TextView", "Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
-                    "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
-                    "Android", "Weclome Hello", "Button Text", "TextView"};
+    private String[] mVals = new String[]{"Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
+            "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
+            "Android", "Weclome Hello", "Button Text", "TextView", "Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
+            "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
+            "Android", "Weclome Hello", "Button Text", "TextView", "Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
+            "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
+            "Android", "Weclome Hello", "Button Text", "TextView", "Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
+            "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
+            "Android", "Weclome Hello", "Button Text", "TextView", "Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
+            "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
+            "Android", "Weclome Hello", "Button Text", "TextView", "Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
+            "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
+            "Android", "Weclome Hello", "Button Text", "TextView", "Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
+            "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
+            "Android", "Weclome Hello", "Button Text", "TextView"};
 
     private FlowLayout mFlowLayout;
     private TagAdapter<String> mAdapter;
@@ -48,7 +44,6 @@ public class ScrollViewTestFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         final LayoutInflater mInflater = LayoutInflater.from(getActivity());
         mFlowLayout = (FlowLayout) view.findViewById(R.id.id_flowlayout);
-        //mFlowLayout.setMaxSelectCount(3);
 
         mFlowLayout.setAdapter(mAdapter = new TagAdapter<String>(mVals) {
 

@@ -21,19 +21,23 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by weilong.chong on 2016/7/19.
- */
 public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedListener {
     private static final String TAG = "FlowLayout";
     private static final int LEFT = -1;
     private static final int CENTER = 0;
     private static final int RIGHT = 1;
 
+    /**
+     * 存储所有的View，按行记录
+     */
     protected List<List<View>> mAllViews = new ArrayList<>();
+    /**
+     * 记录每一行的最大高度
+     */
     protected List<Integer> mLineHeight = new ArrayList<>();
     protected List<Integer> mLineWidth = new ArrayList<>();
     private int mGravity;
+    // 存储每一行所有的childView
     private List<View> lineViews = new ArrayList<>();
 
     private TagAdapter mTagAdapter;
@@ -58,6 +62,7 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
         mAutoSelectEffect = ta.getBoolean(R.styleable.FlowLayout_auto_select_effect, true);
         mSelectedMax = ta.getInt(R.styleable.FlowLayout_max_select, -1);
         ta.recycle();
+
         if (mAutoSelectEffect) {
             setClickable(true);
         }
@@ -75,18 +80,26 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
             }
         }
 
+        // 获得它的父容器为它设置的测量模式和大小
         int sizeWidth = MeasureSpec.getSize(widthMeasureSpec);
         int modeWidth = MeasureSpec.getMode(widthMeasureSpec);
         int sizeHeight = MeasureSpec.getSize(heightMeasureSpec);
         int modeHeight = MeasureSpec.getMode(heightMeasureSpec);
 
-        // wrap_content
+        // 如果是warp_content情况下，记录宽和高
         int width = 0;
         int height = 0;
 
+        /**
+         * 记录每一行的宽度，width不断取最大宽度
+         */
         int lineWidth = 0;
+        /**
+         * 每一行的高度，累加至height
+         */
         int lineHeight = 0;
 
+        // 遍历每个子元素
         for (int i = 0; i < childCount; i++) {
             View child = getChildAt(i);
             if (child.getVisibility() == View.GONE) {
@@ -96,24 +109,31 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
                 }
                 continue;
             }
+            // 测量每一个child的宽和高
             measureChild(child, widthMeasureSpec, heightMeasureSpec);
-            MarginLayoutParams lp = (MarginLayoutParams) child
-                    .getLayoutParams();
+            // 得到child的lp
+            MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
 
-            int childWidth = child.getMeasuredWidth() + lp.leftMargin
-                    + lp.rightMargin;
-            int childHeight = child.getMeasuredHeight() + lp.topMargin
-                    + lp.bottomMargin;
+            // 当前子控件实际占据的宽度
+            int childWidth = child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
+            // 当前子控件实际占据的高度
+            int childHeight = child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin;
 
+            /**
+             * 如果加入当前child，则超出最大宽度，则得到目前最大宽度给width，类加height 然后开启新行
+             */
             if (lineWidth + childWidth > sizeWidth - getPaddingLeft() - getPaddingRight()) {
-                width = Math.max(width, lineWidth);
-                lineWidth = childWidth;
+                width = Math.max(width, lineWidth); // 取最大的
+                lineWidth = childWidth; // 重新开启新行，开始记录
+                // 叠加当前高度
                 height += lineHeight;
+                // 开启记录下一行的高度
                 lineHeight = childHeight;
-            } else {
+            } else { // 否则累加值lineWidth,lineHeight取最大高度
                 lineWidth += childWidth;
                 lineHeight = Math.max(lineHeight, childHeight);
             }
+            // 如果是最后一个，则将当前记录的最大宽度和当前lineWidth做比较
             if (i == childCount - 1) {
                 width = Math.max(lineWidth, width);
                 height += lineHeight;
@@ -142,6 +162,7 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
 
         int childCount = getChildCount();
 
+        // 遍历所有的子view
         for (int i = 0; i < childCount; i++) {
             View child = getChildAt(i);
             if (child.getVisibility() == View.GONE) continue;
@@ -151,21 +172,29 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
             int childWidth = child.getMeasuredWidth();
             int childHeight = child.getMeasuredHeight();
 
+            // 如果已经需要换行
             if (childWidth + lineWidth + lp.leftMargin + lp.rightMargin > width - getPaddingLeft() - getPaddingRight()) {
+                // 记录这一行所有的View以及最大高度
                 mLineHeight.add(lineHeight);
+                // 将当前行的childView保存，然后开启新的ArrayList保存下一行的childView
                 mAllViews.add(lineViews);
                 mLineWidth.add(lineWidth);
 
+                // 重置行宽
                 lineWidth = 0;
                 lineHeight = childHeight + lp.topMargin + lp.bottomMargin;
-                lineViews = new ArrayList<View>();
+                lineViews = new ArrayList<>();
             }
+            /**
+             * 如果不需要换行，则累加
+             */
             lineWidth += childWidth + lp.leftMargin + lp.rightMargin;
             lineHeight = Math.max(lineHeight, childHeight + lp.topMargin
                     + lp.bottomMargin);
             lineViews.add(child);
 
         }
+        // 记录最后一行
         mLineHeight.add(lineHeight);
         mLineWidth.add(lineWidth);
         mAllViews.add(lineViews);
@@ -174,10 +203,13 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
         int left = getPaddingLeft();
         int top = getPaddingTop();
 
+        // 得到总行数
         int lineNum = mAllViews.size();
 
         for (int i = 0; i < lineNum; i++) {
+            // 每一行的所有的views
             lineViews = mAllViews.get(i);
+            // 当前行的最大高度
             lineHeight = mLineHeight.get(i);
 
             // set gravity
@@ -194,15 +226,16 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
                     break;
             }
 
+            // 遍历当前行所有的View
             for (int j = 0; j < lineViews.size(); j++) {
                 View child = lineViews.get(j);
                 if (child.getVisibility() == View.GONE) {
                     continue;
                 }
 
-                MarginLayoutParams lp = (MarginLayoutParams) child
-                        .getLayoutParams();
+                MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
 
+                //计算childView的left,top,right,bottom
                 int lc = left + lp.leftMargin;
                 int tc = top + lp.topMargin;
                 int rc = lc + child.getMeasuredWidth();
@@ -210,8 +243,7 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
 
                 child.layout(lc, tc, rc, bc);
 
-                left += child.getMeasuredWidth() + lp.leftMargin
-                        + lp.rightMargin;
+                left += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
             }
             top += lineHeight;
         }
@@ -266,7 +298,7 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
     private void changeAdapter() {
         removeAllViews();
         TagAdapter adapter = mTagAdapter;
-        TagView tagViewContainer = null;
+        TagView tagViewContainer;
         HashSet preCheckedList = mTagAdapter.getPreCheckedList();
         for (int i = 0; i < adapter.getCount(); i++) {
             View tagView = adapter.getView(this, i, adapter.getItem(i));

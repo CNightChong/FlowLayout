@@ -20,7 +20,7 @@ public abstract class TagAdapter<T> {
     }
 
     public TagAdapter(T[] datas) {
-        mTagDatas = new ArrayList<T>(Arrays.asList(datas));
+        mTagDatas = new ArrayList<>(Arrays.asList(datas));
     }
 
     public interface OnDataChangedListener {

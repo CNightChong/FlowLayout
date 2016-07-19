@@ -9,18 +9,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.chong.flowlayout.R;
-import com.chong.flowlayout.view.FlowLayout;
 import com.chong.flowlayout.adapter.TagAdapter;
+import com.chong.flowlayout.view.FlowLayout;
 
-/**
- * Created by zhy on 15/9/10.
- */
 public class LimitSelectedFragment extends Fragment {
-    private String[] mVals = new String[]
-            {"Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
-                    "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
-                    "Android", "Weclome Hello", "Button Text", "TextView", "Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
-                    "Android", "Weclome", "Button ImageView"};
+    private String[] mVals = new String[]{"Hello", "Android", "Weclome Hi ", "Button", "TextView",
+            "Hello", "Android", "Weclome", "Button ImageView", "TextView", "Helloworld", "Android",
+            "Weclome Hello", "Button Text", "TextView", "Hello", "Android", "Weclome Hi ",
+            "Button", "TextView", "Hello", "Android", "Weclome", "Button ImageView"};
 
     private FlowLayout mFlowLayout;
 

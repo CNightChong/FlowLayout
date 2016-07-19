@@ -10,19 +10,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chong.flowlayout.R;
-import com.chong.flowlayout.view.FlowLayout;
 import com.chong.flowlayout.adapter.TagAdapter;
+import com.chong.flowlayout.view.FlowLayout;
 
 import java.util.Set;
 
-/**
- * Created by zhy on 15/9/10.
- */
 public class SingleChooseFragment extends Fragment {
-    private String[] mVals = new String[]
-            {"Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
-                    "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
-                    "Android", "Weclome Hello", "Button Text", "TextView"};
+    private String[] mVals = new String[]{"Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
+            "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
+            "Android", "Weclome Hello", "Button Text", "TextView"};
 
     private FlowLayout mFlowLayout;
 
@@ -36,7 +32,6 @@ public class SingleChooseFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         final LayoutInflater mInflater = LayoutInflater.from(getActivity());
         mFlowLayout = (FlowLayout) view.findViewById(R.id.id_flowlayout);
-        //mFlowLayout.setMaxSelectCount(3);
         mFlowLayout.setAdapter(new TagAdapter<String>(mVals) {
 
             @Override
@@ -52,7 +47,6 @@ public class SingleChooseFragment extends Fragment {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
                 Toast.makeText(getActivity(), mVals[position], Toast.LENGTH_SHORT).show();
-                //view.setVisibility(View.GONE);
                 return true;
             }
         });

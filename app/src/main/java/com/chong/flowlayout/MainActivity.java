@@ -8,7 +8,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.chong.flowlayout.fragment.EventTestFragment;
-import com.chong.flowlayout.fragment.GravityFragment;
 import com.chong.flowlayout.fragment.LimitSelectedFragment;
 import com.chong.flowlayout.fragment.ListViewTestFragment;
 import com.chong.flowlayout.fragment.ScrollViewTestFragment;
@@ -19,9 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
 
-    private String[] mTabTitles = new String[]
-            {"Muli Selected", "Limit 3",
-                    "Event Test", "ScrollView Test", "Single Choose", "Gravity", "ListView Sample"};
+    private String[] mTabTitles = new String[]{"Muli Selected", "Limit 3",
+            "Event Test", "ScrollView Test", "Single Choose", "ListView Sample"};
 
 
     @Override
@@ -47,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
                     case 4:
                         return new SingleChooseFragment();
                     case 5:
-                        return new GravityFragment();
-                    case 6:
                         return new ListViewTestFragment();
                     default:
                         return new EventTestFragment();

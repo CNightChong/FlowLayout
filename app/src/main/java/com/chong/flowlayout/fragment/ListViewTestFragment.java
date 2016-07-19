@@ -21,9 +21,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Created by zhy on 15/9/10.
- */
 public class ListViewTestFragment extends Fragment {
 
     private List<List<String>> mDatas = new ArrayList<List<String>>();
