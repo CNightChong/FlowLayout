@@ -1,6 +1,8 @@
-package com.chong.flowlayoutdemo;
+package com.chong.flowlayout.adapter;
 
 import android.view.View;
+
+import com.chong.flowlayout.view.FlowLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,11 +23,11 @@ public abstract class TagAdapter<T> {
         mTagDatas = new ArrayList<T>(Arrays.asList(datas));
     }
 
-    interface OnDataChangedListener {
+    public interface OnDataChangedListener {
         void onChanged();
     }
 
-    void setOnDataChangedListener(OnDataChangedListener listener) {
+    public void setOnDataChangedListener(OnDataChangedListener listener) {
         mOnDataChangedListener = listener;
     }
 
@@ -44,7 +46,7 @@ public abstract class TagAdapter<T> {
         notifyDataChanged();
     }
 
-    HashSet<Integer> getPreCheckedList() {
+    public HashSet<Integer> getPreCheckedList() {
         return mCheckedPosList;
     }
 

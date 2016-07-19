@@ -1,4 +1,4 @@
-package com.chong.flowlayoutdemo;
+package com.chong.flowlayout;
 
 import org.junit.Test;
 

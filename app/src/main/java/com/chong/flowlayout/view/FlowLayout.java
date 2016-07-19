@@ -1,4 +1,4 @@
-package com.chong.flowlayoutdemo;
+package com.chong.flowlayout.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.chong.flowlayout.R;
+import com.chong.flowlayout.adapter.TagAdapter;
 
 import java.util.ArrayList;
 import java.util.HashSet;

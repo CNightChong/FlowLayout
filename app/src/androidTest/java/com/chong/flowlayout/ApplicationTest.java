@@ -1,4 +1,4 @@
-package com.chong.flowlayoutdemo;
+package com.chong.flowlayout;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,4 +1,4 @@
-package com.chong.flowlayoutdemo;
+package com.chong.flowlayout.view;
 
 import android.content.Context;
 import android.view.View;
