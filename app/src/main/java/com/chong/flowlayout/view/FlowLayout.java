@@ -44,7 +44,11 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
 
     private TagAdapter mTagAdapter;
     private boolean mAutoSelectEffect = true;
-    private int mSelectedMax = -1;//-1为不限制数量
+    /**
+     * 可选择的最大数量
+     * -1为不限制数量
+     */
+    private int mSelectedMax = -1;
     private MotionEvent mMotionEvent;
 
     private Set<Integer> mSelectedView = new HashSet<>();
@@ -288,7 +292,9 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
 
     public void setOnSelectListener(OnSelectListener onSelectListener) {
         mOnSelectListener = onSelectListener;
-        if (mOnSelectListener != null) setClickable(true);
+        if (mOnSelectListener != null) {
+            setClickable(true);
+        }
     }
 
     public interface OnTagClickListener {
@@ -299,7 +305,9 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
 
     public void setOnTagClickListener(OnTagClickListener onTagClickListener) {
         mOnTagClickListener = onTagClickListener;
-        if (onTagClickListener != null) setClickable(true);
+        if (onTagClickListener != null) {
+            setClickable(true);
+        }
     }
 
 
