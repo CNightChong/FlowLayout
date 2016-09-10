@@ -95,7 +95,7 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
         int sizeHeight = MeasureSpec.getSize(heightMeasureSpec);
         int modeHeight = MeasureSpec.getMode(heightMeasureSpec);
 
-        // 当测量模式是T_MOST(warp_content)时，记录宽和高
+        // 当测量模式是AT_MOST(warp_content)时，记录宽和高
         // width应该取最长一行的宽度
         int width = 0;
         // 所有行数累积的高度
@@ -131,7 +131,7 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
             if (lineWidth + childWidth > sizeWidth - getPaddingLeft() - getPaddingRight()) {
                 // 对比得到最大宽度
                 width = Math.max(width, lineWidth);
-                // 重置lineWidth，换行
+                // 换行，重置lineWidth
                 lineWidth = childWidth;
                 // 叠加当前高度
                 height += lineHeight;
@@ -164,7 +164,7 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
         mLineWidth.clear();
         lineViews.clear();
 
-        //当前ViewGroup的宽度
+        // 当前ViewGroup的宽度
         int width = getWidth();
 
         int lineWidth = 0;
@@ -324,12 +324,13 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
         TagView tagViewContainer;
         HashSet preCheckedList = mTagAdapter.getPreCheckedList();
         for (int i = 0; i < adapter.getCount(); i++) {
-            View tagView = adapter.getView(this, i, adapter.getItem(i));
+            View contentView = adapter.getView(this, i, adapter.getItem(i));
 
             tagViewContainer = new TagView(getContext());
-            tagView.setDuplicateParentStateEnabled(true);
-            if (tagView.getLayoutParams() != null) {
-                tagViewContainer.setLayoutParams(tagView.getLayoutParams());
+            // 父view的CHECKED状态传递到子view
+            contentView.setDuplicateParentStateEnabled(true);
+            if (contentView.getLayoutParams() != null) {
+                tagViewContainer.setLayoutParams(contentView.getLayoutParams());
             } else {
                 MarginLayoutParams lp = new MarginLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
                 lp.setMargins(dip2px(getContext(), 5),
@@ -338,7 +339,7 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
                         dip2px(getContext(), 5));
                 tagViewContainer.setLayoutParams(lp);
             }
-            tagViewContainer.addView(tagView);
+            tagViewContainer.addView(contentView);
             addView(tagViewContainer);
 
 

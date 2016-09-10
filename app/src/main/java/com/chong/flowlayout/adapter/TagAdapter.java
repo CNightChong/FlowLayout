@@ -11,16 +11,16 @@ import java.util.List;
 import java.util.Set;
 
 public abstract class TagAdapter<T> {
-    private List<T> mTagDatas;
+    private List<T> mTagData;
     private OnDataChangedListener mOnDataChangedListener;
-    private HashSet<Integer> mCheckedPosList = new HashSet<Integer>();
+    private HashSet<Integer> mCheckedPosList = new HashSet<>();
 
-    public TagAdapter(List<T> datas) {
-        mTagDatas = datas;
+    public TagAdapter(List<T> data) {
+        mTagData = data;
     }
 
-    public TagAdapter(T[] datas) {
-        mTagDatas = new ArrayList<>(Arrays.asList(datas));
+    public TagAdapter(T[] data) {
+        mTagData = new ArrayList<>(Arrays.asList(data));
     }
 
     public interface OnDataChangedListener {
@@ -31,9 +31,9 @@ public abstract class TagAdapter<T> {
         mOnDataChangedListener = listener;
     }
 
-    public void setSelectedList(int... poses) {
+    public void setSelectedList(int... positions) {
         Set<Integer> set = new HashSet<>();
-        for (int pos : poses) {
+        for (int pos : positions) {
             set.add(pos);
         }
         setSelectedList(set);
@@ -41,8 +41,9 @@ public abstract class TagAdapter<T> {
 
     public void setSelectedList(Set<Integer> set) {
         mCheckedPosList.clear();
-        if (set != null)
+        if (set != null) {
             mCheckedPosList.addAll(set);
+        }
         notifyDataChanged();
     }
 
@@ -52,7 +53,7 @@ public abstract class TagAdapter<T> {
 
 
     public int getCount() {
-        return mTagDatas == null ? 0 : mTagDatas.size();
+        return mTagData == null ? 0 : mTagData.size();
     }
 
     public void notifyDataChanged() {
@@ -60,7 +61,7 @@ public abstract class TagAdapter<T> {
     }
 
     public T getItem(int position) {
-        return mTagDatas.get(position);
+        return mTagData.get(position);
     }
 
     public abstract View getView(FlowLayout parent, int position, T t);

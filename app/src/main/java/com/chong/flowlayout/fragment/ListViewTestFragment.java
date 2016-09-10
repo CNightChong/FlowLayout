@@ -23,7 +23,7 @@ import java.util.Set;
 
 public class ListViewTestFragment extends Fragment {
 
-    private List<List<String>> mDatas = new ArrayList<List<String>>();
+    private List<List<String>> mData = new ArrayList<List<String>>();
     private ListView mListView;
 
     @Nullable
@@ -34,10 +34,10 @@ public class ListViewTestFragment extends Fragment {
 
     @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
-        initDatas();
+        initData();
 
         mListView = (ListView) view.findViewById(R.id.id_listview);
-        mListView.setAdapter(new CommonAdapter<List<String>>(getActivity(), R.layout.item_for_listview, mDatas) {
+        mListView.setAdapter(new CommonAdapter<List<String>>(getActivity(), R.layout.item_for_listview, mData) {
             Map<Integer, Set<Integer>> selectedMap = new HashMap<>();
 
 
@@ -70,13 +70,13 @@ public class ListViewTestFragment extends Fragment {
 
     }
 
-    private void initDatas() {
+    private void initData() {
         for (int i = 'A'; i < 'z'; i++) {
             List<String> itemData = new ArrayList<String>(3);
             for (int j = 0; j < 3; j++) {
                 itemData.add((char) i + "");
             }
-            mDatas.add(itemData);
+            mData.add(itemData);
         }
     }
 }

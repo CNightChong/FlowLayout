@@ -10,25 +10,25 @@ import java.util.List;
 
 public abstract class CommonAdapter<T> extends BaseAdapter {
     protected Context mContext;
-    protected List<T> mDatas;
+    protected List<T> mData;
     protected LayoutInflater mInflater;
     private int layoutId;
 
-    public CommonAdapter(Context context, int layoutId, List<T> datas) {
+    public CommonAdapter(Context context, int layoutId, List<T> Data) {
         this.mContext = context;
         mInflater = LayoutInflater.from(context);
-        this.mDatas = datas;
+        this.mData = Data;
         this.layoutId = layoutId;
     }
 
     @Override
     public int getCount() {
-        return mDatas.size();
+        return mData.size();
     }
 
     @Override
     public T getItem(int position) {
-        return mDatas.get(position);
+        return mData.get(position);
     }
 
     @Override

@@ -16,9 +16,9 @@ import com.chong.flowlayout.view.FlowLayout;
 import java.util.Set;
 
 public class SingleChooseFragment extends Fragment {
-    private String[] mVals = new String[]{"Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
-            "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
-            "Android", "Weclome Hello", "Button Text", "TextView"};
+    private String[] mValues = new String[]{"Hello", "Android", "Welcome Hi ", "Button", "TextView", "Hello",
+            "Android", "Welcome", "Button ImageView", "TextView", "Hello World",
+            "Android", "Welcome Hello", "Button Text", "TextView"};
 
     private FlowLayout mFlowLayout;
 
@@ -32,7 +32,7 @@ public class SingleChooseFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         final LayoutInflater mInflater = LayoutInflater.from(getActivity());
         mFlowLayout = (FlowLayout) view.findViewById(R.id.id_flowlayout);
-        mFlowLayout.setAdapter(new TagAdapter<String>(mVals) {
+        mFlowLayout.setAdapter(new TagAdapter<String>(mValues) {
 
             @Override
             public View getView(FlowLayout parent, int position, String s) {
@@ -46,7 +46,7 @@ public class SingleChooseFragment extends Fragment {
         mFlowLayout.setOnTagClickListener(new FlowLayout.OnTagClickListener() {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
-                Toast.makeText(getActivity(), mVals[position], Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), mValues[position], Toast.LENGTH_SHORT).show();
                 return true;
             }
         });

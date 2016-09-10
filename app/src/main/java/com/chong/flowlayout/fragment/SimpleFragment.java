@@ -13,9 +13,9 @@ import com.chong.flowlayout.adapter.TagAdapter;
 import com.chong.flowlayout.view.FlowLayout;
 
 public class SimpleFragment extends Fragment {
-    private String[] mVals = new String[]{"Hello", "Android", "Weclome Hi ", "Button", "TextView",
-            "Hello", "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
-            "Android", "Weclome Hello", "Button Text", "TextView"};
+    private String[] mValues = new String[]{"Hello", "Android", "Welcome Hi ", "Button", "TextView",
+            "Hello", "Android", "Welcome", "Button ImageView", "TextView", "Hello World",
+            "Android", "Welcome Hello", "Button Text", "TextView"};
 
     private FlowLayout mFlowLayout;
 
@@ -30,7 +30,7 @@ public class SimpleFragment extends Fragment {
         final LayoutInflater mInflater = LayoutInflater.from(getActivity());
         mFlowLayout = (FlowLayout) view.findViewById(R.id.id_flowlayout);
 
-        mFlowLayout.setAdapter(new TagAdapter<String>(mVals) {
+        mFlowLayout.setAdapter(new TagAdapter<String>(mValues) {
             @Override
             public View getView(FlowLayout parent, int position, String s) {
                 TextView tv = (TextView) mInflater.inflate(R.layout.tv,
