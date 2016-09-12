@@ -79,12 +79,17 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
         int childCount = getChildCount();
 
         for (int i = 0; i < childCount; i++) {
-            TagView tagView = (TagView) getChildAt(i);
-            if (tagView.getVisibility() == View.GONE) {
-                continue;
-            }
-            if (tagView.getTagView().getVisibility() == View.GONE) {
-                tagView.setVisibility(View.GONE);
+            View childView = getChildAt(i);
+            if (childView instanceof TagView) {
+                TagView tagView = (TagView) getChildAt(i);
+                if (tagView.getVisibility() == View.GONE) {
+                    continue;
+                }
+                if (tagView.getTagView().getVisibility() == View.GONE) {
+                    tagView.setVisibility(View.GONE);
+                }
+            } else {
+                throw new RuntimeException("ChildView's parent must be TagView!");
             }
         }
 
@@ -420,7 +425,7 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
                 mSelectedView.remove(position);
             }
             if (mOnSelectListener != null) {
-                mOnSelectListener.onSelected(new HashSet<Integer>(mSelectedView));
+                mOnSelectListener.onSelected(new HashSet<>(mSelectedView));
             }
         }
     }
@@ -485,12 +490,19 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
     private TagView findChild(int x, int y) {
         final int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
-            TagView v = (TagView) getChildAt(i);
-            if (v.getVisibility() == View.GONE) continue;
-            Rect outRect = new Rect();
-            v.getHitRect(outRect);
-            if (outRect.contains(x, y)) {
-                return v;
+            View childView = getChildAt(i);
+            if (childView instanceof TagView) {
+                TagView v = (TagView) getChildAt(i);
+                if (v.getVisibility() == View.GONE) {
+                    continue;
+                }
+                Rect outRect = new Rect();
+                v.getHitRect(outRect);
+                if (outRect.contains(x, y)) {
+                    return v;
+                }
+            } else {
+                throw new RuntimeException("ChildView's parent must be TagView!");
             }
         }
         return null;

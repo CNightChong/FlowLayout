@@ -1,6 +1,7 @@
 package com.chong.flowlayout.view;
 
 import android.content.Context;
+import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Checkable;
 import android.widget.FrameLayout;
@@ -10,7 +11,15 @@ public class TagView extends FrameLayout implements Checkable {
     private static final int[] CHECK_STATE = new int[]{android.R.attr.state_checked};
 
     public TagView(Context context) {
-        super(context);
+        this(context, null);
+    }
+
+    public TagView(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public TagView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
     }
 
     public View getTagView() {

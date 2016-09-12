@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="16dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="gravity:left" />
+        android:text="gravity:left"/>
 
     <com.chong.flowlayout.view.FlowLayout
         android:id="@+id/left_fl"
@@ -18,53 +18,77 @@
         android:layout_marginTop="6dp"
         app:gravity="left">
 
-        <TextView
+        <com.chong.flowlayout.view.TagView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
-            android:layout_marginRight="6dp"
-            android:background="@drawable/normal_bg"
-            android:text="Breath And Life"
-            android:textColor="@drawable/text_color"
-            android:textSize="13sp" />
+            android:layout_marginRight="6dp">
 
-        <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/normal_bg"
+                android:duplicateParentState="true"
+                android:text="Breath And Life"
+                android:textColor="@drawable/text_color"
+                android:textSize="13sp"
+                />
+        </com.chong.flowlayout.view.TagView>
+
+        <com.chong.flowlayout.view.TagView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
-            android:layout_marginRight="6dp"
-            android:background="@drawable/normal_bg"
-            android:text="Fallen"
-            android:textColor="@drawable/text_color"
-            android:textSize="13sp" />
+            android:layout_marginRight="6dp">
 
-        <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/normal_bg"
+                android:duplicateParentState="true"
+                android:text="Fallen"
+                android:textColor="@drawable/text_color"
+                android:textSize="13sp"/>
+        </com.chong.flowlayout.view.TagView>
+
+        <com.chong.flowlayout.view.TagView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
-            android:layout_marginRight="6dp"
-            android:background="@drawable/normal_bg"
-            android:text="Brand-new World"
-            android:textColor="@drawable/text_color"
-            android:textSize="13sp" />
+            android:layout_marginRight="6dp">
 
-        <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/normal_bg"
+                android:duplicateParentState="true"
+                android:text="Brand-new World"
+                android:textColor="@drawable/text_color"
+                android:textSize="13sp"/>
+        </com.chong.flowlayout.view.TagView>
+
+        <com.chong.flowlayout.view.TagView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
-            android:layout_marginRight="6dp"
-            android:background="@drawable/normal_bg"
-            android:text="Save you from anything"
-            android:textColor="@drawable/text_color"
-            android:textSize="13sp" />
+            android:layout_marginRight="6dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/normal_bg"
+                android:duplicateParentState="true"
+                android:text="Save you from anything"
+                android:textColor="@drawable/text_color"
+                android:textSize="13sp"/>
+        </com.chong.flowlayout.view.TagView>
     </com.chong.flowlayout.view.FlowLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
-        android:text="gravity:center" />
+        android:text="gravity:center"/>
 
     <com.chong.flowlayout.view.FlowLayout
         android:id="@+id/center_fl"
@@ -73,54 +97,76 @@
         android:layout_marginTop="6dp"
         app:gravity="center">
 
-        <TextView
+        <com.chong.flowlayout.view.TagView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
-            android:layout_marginRight="6dp"
-            android:background="@drawable/normal_bg"
-            android:text="Breath And Life"
-            android:textColor="@drawable/text_color"
-            android:textSize="13sp" />
+            android:layout_marginRight="6dp">
 
-        <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/normal_bg"
+                android:duplicateParentState="true"
+                android:text="Breath And Life"
+                android:textColor="@drawable/text_color"
+                android:textSize="13sp"/>
+        </com.chong.flowlayout.view.TagView>
+
+        <com.chong.flowlayout.view.TagView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
-            android:layout_marginRight="6dp"
-            android:background="@drawable/normal_bg"
-            android:text="Fallen"
-            android:textColor="@drawable/text_color"
-            android:textSize="13sp" />
+            android:layout_marginRight="6dp">
 
-        <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/normal_bg"
+                android:duplicateParentState="true"
+                android:text="Fallen"
+                android:textColor="@drawable/text_color"
+                android:textSize="13sp"/>
+        </com.chong.flowlayout.view.TagView>
+
+        <com.chong.flowlayout.view.TagView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
-            android:layout_marginRight="6dp"
-            android:background="@drawable/normal_bg"
-            android:text="Brand-new World"
-            android:textColor="@drawable/text_color"
-            android:textSize="13sp" />
+            android:layout_marginRight="6dp">
 
-        <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/normal_bg"
+                android:duplicateParentState="true"
+                android:text="Brand-new World"
+                android:textColor="@drawable/text_color"
+                android:textSize="13sp"/>
+        </com.chong.flowlayout.view.TagView>
+
+        <com.chong.flowlayout.view.TagView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
-            android:layout_marginRight="6dp"
-            android:background="@drawable/normal_bg"
-            android:text="Save you from anything"
-            android:textColor="@drawable/text_color"
-            android:textSize="13sp" />
+            android:layout_marginRight="6dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/normal_bg"
+                android:duplicateParentState="true"
+                android:text="Save you from anything"
+                android:textColor="@drawable/text_color"
+                android:textSize="13sp"/>
+        </com.chong.flowlayout.view.TagView>
     </com.chong.flowlayout.view.FlowLayout>
-
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
-        android:text="gravity:right" />
+        android:text="gravity:right"/>
 
     <com.chong.flowlayout.view.FlowLayout
         android:id="@+id/right_fl"
@@ -129,45 +175,69 @@
         android:layout_marginTop="6dp"
         app:gravity="right">
 
-        <TextView
+        <com.chong.flowlayout.view.TagView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
-            android:layout_marginRight="6dp"
-            android:background="@drawable/normal_bg"
-            android:text="Breath And Life"
-            android:textColor="@drawable/text_color"
-            android:textSize="13sp" />
+            android:layout_marginRight="6dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
-            android:layout_marginRight="6dp"
-            android:background="@drawable/normal_bg"
-            android:text="Fallen"
-            android:textColor="@drawable/text_color"
-            android:textSize="13sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/normal_bg"
+                android:duplicateParentState="true"
+                android:text="Breath And Life"
+                android:textColor="@drawable/text_color"
+                android:textSize="13sp"/>
+        </com.chong.flowlayout.view.TagView>
 
-        <TextView
+        <com.chong.flowlayout.view.TagView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
-            android:layout_marginRight="6dp"
-            android:background="@drawable/normal_bg"
-            android:text="Brand-new World"
-            android:textColor="@drawable/text_color"
-            android:textSize="13sp" />
+            android:layout_marginRight="6dp">
 
-        <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/normal_bg"
+                android:duplicateParentState="true"
+                android:text="Fallen"
+                android:textColor="@drawable/text_color"
+                android:textSize="13sp"/>
+        </com.chong.flowlayout.view.TagView>
+
+        <com.chong.flowlayout.view.TagView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
-            android:layout_marginRight="6dp"
-            android:background="@drawable/normal_bg"
-            android:text="Save you from anything"
-            android:textColor="@drawable/text_color"
-            android:textSize="13sp" />
+            android:layout_marginRight="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/normal_bg"
+                android:duplicateParentState="true"
+                android:text="Brand-new World"
+                android:textColor="@drawable/text_color"
+                android:textSize="13sp"/>
+        </com.chong.flowlayout.view.TagView>
+
+        <com.chong.flowlayout.view.TagView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:layout_marginRight="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/normal_bg"
+                android:duplicateParentState="true"
+                android:text="Save you from anything"
+                android:textColor="@drawable/text_color"
+                android:textSize="13sp"/>
+        </com.chong.flowlayout.view.TagView>
 
     </com.chong.flowlayout.view.FlowLayout>
 
