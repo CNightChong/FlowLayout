@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chong.flowlayout.R;
-import com.chong.flowlayout.adapter.TagAdapter;
 
 import java.util.ArrayList;
 import java.util.HashSet;

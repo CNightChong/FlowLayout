@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.chong.flowlayout.R;
-import com.chong.flowlayout.adapter.TagAdapter;
+import com.chong.flowlayout.view.TagAdapter;
 import com.chong.flowlayout.view.FlowLayout;
 
 public class LimitSelectedFragment extends Fragment {

@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
 
-    private String[] mTabTitles = new String[]{"Muli Selected", "Limit 3",
+    private String[] mTabTitles = new String[]{"Multi Selected", "Limit 3",
             "Event Test", "ScrollView Test", "Single Choose", "ListView Sample", "Gravity"};
 
 

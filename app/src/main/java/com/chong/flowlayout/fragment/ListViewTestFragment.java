@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.chong.flowlayout.R;
 import com.chong.flowlayout.adapter.ViewHolder;
 import com.chong.flowlayout.adapter.CommonAdapter;
-import com.chong.flowlayout.adapter.TagAdapter;
+import com.chong.flowlayout.view.TagAdapter;
 import com.chong.flowlayout.view.FlowLayout;
 
 import java.util.ArrayList;
