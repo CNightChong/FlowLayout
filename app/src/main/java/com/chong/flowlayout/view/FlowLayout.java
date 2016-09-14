@@ -35,6 +35,9 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
      */
     protected List<Integer> mLineHeight = new ArrayList<>();
     protected List<Integer> mLineWidth = new ArrayList<>();
+    /**
+     * 布局的Gravity
+     */
     private int mGravity;
     /**
      * 存储每一行所有的childView
@@ -42,6 +45,9 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
     private List<View> lineViews = new ArrayList<>();
 
     private TagAdapter mTagAdapter;
+    /**
+     * 是否根据选择自动改变状态
+     */
     private boolean mAutoSelectEffect = true;
     /**
      * 可选择的最大数量
@@ -50,6 +56,9 @@ public class FlowLayout extends ViewGroup implements TagAdapter.OnDataChangedLis
     private int mSelectedMax = -1;
     private MotionEvent mMotionEvent;
 
+    /**
+     * 选中的子view
+     */
     private Set<Integer> mSelectedView = new HashSet<>();
 
     public FlowLayout(Context context) {
